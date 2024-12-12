@@ -1,1 +1,96 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess a number</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(80deg, #f4e7ed, #5ec1f3, #0052d4);
+        background-size: 400% 400%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #head {
+        font-size: 2rem;
+        color: #182d51;
+      }
+      .container {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 20px;
+        max-width: 300px;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+      }
+      .container input {
+        width: 50%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        font-size: 1em;
+        margin-bottom: 15px;
+        outline: none;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      #result {
+        font-size: 1.5rem;
+      }
+      button{
+        background-color: #e8edf79e;
+        border: 1px solid rgb(212, 201, 201);
+        border-radius: 5px;
+        font-size: 1.5rem;
+        color: #4d5769;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p id="head">Guess a number(1-10)</p>
+      <input type="number" id="guess" value="0">
+      <button type="button">Check</button>
+      <p id="result">Enter your guess</p>
+      <p id="score">Score = 0</p>
+    </div>
+    <script>
+      let guess = document.querySelector("#guess");
+      const result = document.querySelector("#result");
+      const score = document.querySelector("#score");
+      point = 0;
+      function guess_num(){
+        num = Math.floor(Math.random() * 10 + 1);
+        console.log(num);
+        if (parseInt(guess.value) == num) {
+          result.textContent = "Yay!! Your guess is correct";
+          document.body.style.background ="linear-gradient(80deg, #f4e7ed, #25e752, #00d419)";
+          point += 1;
+          score.textContent = "Score = " + point;
+        } else {
+          result.textContent = "Oops!! Wrong answer, it was "+num;
+          document.body.style.background ="linear-gradient(80deg, #f4e7ed, #f35e5e, #d40000)";
+          score.textContent = "Score = 0";
+        }
+      }
+      document.querySelector("button").addEventListener("click", guess_num);
+      guess.addEventListener("keydown", (e)=>{
+        if(event.key == "Enter"){
+            guess_num();
+        }
+      });
+
+    </script>
+  </body>
+</html>
